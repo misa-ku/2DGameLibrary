@@ -1,0 +1,1 @@
+use "isAnchorCentered" in "moveToDestination()" or "moveInDirection()"
