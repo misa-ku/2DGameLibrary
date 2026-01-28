@@ -3,7 +3,7 @@ export class Canvas{
     constructor(canvasId, width, height, borderWidth, borderStyle, borderColor){
         this.canvas = document.getElementById(canvasId);
         this.ctx = this.canvas.getContext("2d");
-
+        
         this.canvas.width = width;
         this.canvas.height = height;
 
@@ -13,8 +13,15 @@ export class Canvas{
         
         this.ctx.imageSmoothingEnabled = false; //maybe adding a toggle function soon
     }
-    getWidth(){return this.canvas.width;}
-    getHeight(){return this.canvas.height;}
+    getWidth(){
+        return this.canvas.width;
+    }
+    getHeight(){
+        return this.canvas.height;
+    }
+    rotate(angle){
+        this.ctx.rotate(angle);
+    }
 
     clear(){
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -131,6 +138,10 @@ export class Sprite{
             this.x = destination.get("x");
             this.y = destination.get("y");
         }
+    }
+
+    rotate(){
+        const oldRotation = 
     }
 
 }
