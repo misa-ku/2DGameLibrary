@@ -12,6 +12,7 @@ export class Canvas{
         this.canvas.style.borderColor = borderColor ?? "gray";
         
         this.ctx.imageSmoothingEnabled = false; //maybe adding a toggle function soon
+        this.rotation = 0;
     }
     getWidth(){
         return this.canvas.width;
@@ -45,11 +46,15 @@ export class Sprite{
         this.sheight = sheight ?? img.height;
 
         this.isAnchorCentered = Boolean(false); // if false, the sprites' anchorpoint will be at the top-left corner (default)
+        this.rotation = 0;
     }
 
     draw(){
+        const oldRotation = this.canvas.rotation;
+        this.canvas.rotation = this.rotation;
         // clipping images is not supported and may cause some position offset
         this.canvas.ctx.drawImage(this.img, this.sx, this.sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
+        this.canvas.rotation = oldRotation;
     }
 
     // all the GET and SET functions aren't necessary but easier to find (and looks cleaner) while using the object: "player.getX()" instead of "player.x"
@@ -140,8 +145,11 @@ export class Sprite{
         }
     }
 
-    rotate(){
-        const oldRotation = 
+    setRotation(angle){
+        this.rotation = angle;
+    }
+    changeRotation(angle){
+        this.rotation += angle;
     }
 
 }
@@ -178,4 +186,5 @@ export class Input{
         Input.mouse.set("x", e.clientX);
         Input.mouse.set("y", e.clientY);
     });
+
 })();
