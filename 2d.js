@@ -45,7 +45,7 @@ export class Sprite{
         this.swidth = swidth ?? img.width;
         this.sheight = sheight ?? img.height;
 
-        this.isAnchorCentered = Boolean(false); // if false, the sprites' anchorpoint will be at the top-left corner (default)
+        this.isAnchorCentered = false; // if false, the sprites' anchorpoint will be at the top-left corner (default)
         this.rotation = 0;
     }
 
@@ -188,3 +188,4 @@ export class Input{
     });
 
 })();
+
