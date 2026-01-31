@@ -1,1 +1,2 @@
 use "isAnchorCentered" in "moveToDestination()" or "moveInDirection()"
+https://stackoverflow.com/questions/50045930/javascript-canvas-continuously-rotating-a-canvas-drawn-image#:~:text=You%20can%20rotate%20an%20image,context%20functions%20setTransform%20and%20rotate%20.&text=To%20rotate%20about%20the%20image,around%20the%20top%20left%20corner.
