@@ -15,10 +15,10 @@ export class Canvas{
         this.rotation = 0;
     }
     getWidth(){
-        return this.canvas.width;
+        return this.width;
     }
     getHeight(){
-        return this.canvas.height;
+        return this.height;
     }
     rotate(angle){
         this.ctx.rotate(angle);
@@ -50,15 +50,22 @@ export class Sprite{
     }
 
     draw(){
-        const oldRotation = this.canvas.rotation;
-        this.canvas.rotation = this.rotation;
+        this.canvas.ctx.rotate(this.rotation);
+        this.canvas.ctx.translate(2, 2);
+
         // clipping images is not supported and may cause some position offset
         this.canvas.ctx.drawImage(this.img, this.sx, this.sy, this.swidth, this.sheight, this.x, this.y, this.width, this.height);
-        this.canvas.rotation = oldRotation;
+
+        this.canvas.ctx.rotate(-this.rotation);
+        this.canvas.ctx.translate(-2, -2);
+        console.log(this.rotation);
+        
     }
 
     // all the GET and SET functions aren't necessary but easier to find (and looks cleaner) while using the object: "player.getX()" instead of "player.x"
-    setPos(x, y){ this.x = x ?? 0; this.y = y ?? 0; }
+    setPos(x, y){
+        this.x = x ?? 0; this.y = y ?? 0;
+    }
     setX(x){
         this.x = x;
     }
@@ -112,12 +119,18 @@ export class Sprite{
         this.y += changeY;
     }
 
+    setRotation(angle){
+        this.rotation = angle;
+    }
+    changeRotation(angle){
+        this.rotation += angle;
+    }
+
     moveInDirection(direction, speed){
         const rad = (direction-90) * Math.PI / 180;
         this.x += Math.cos(rad) * speed;
         this.y += Math.sin(rad) * speed;
     }
-
     getDirection(destination){
         //TASK use one parameter "destination"
         const dx = destination.get("x") - this.x;  //distance between both x values
@@ -143,13 +156,6 @@ export class Sprite{
             this.x = destination.get("x");
             this.y = destination.get("y");
         }
-    }
-
-    setRotation(angle){
-        this.rotation = angle;
-    }
-    changeRotation(angle){
-        this.rotation += angle;
     }
 
 }

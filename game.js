@@ -26,8 +26,6 @@ function update(){
     player.changePos(speedX, speedY);
     enemy.moveToDestination(player.getPos(), 1);
 
-    console.log(player.getWidth(), player.getHeight());
-
     playerController();
     requestAnimationFrame(update);
 } update();
@@ -47,6 +45,8 @@ function playerController(){
     if(Input.keyDown("a", "ArrowLeft") && !Input.keyDown("d", "ArrowRight")) speedX = -3;
             else speedX*=0.98;
 
-    if(Input.keyDown("e")) player.setRotation(45);
+    if(Input.keyDown("e")){
+        player.setRotation(45);
+    }
     if(Input.keyDown("q")) player.setRotation(0);
 }
